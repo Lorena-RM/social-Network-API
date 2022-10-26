@@ -1,0 +1,24 @@
+{
+  "name": "social-network-api",
+  "version": "1.0.0",
+  "description": "a social networking API with no front end but can be used through insomnia, postman, thunderclient etc... ",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lorena-RM/social-Network-API.git"
+  },
+  "author": "Lorena Morales",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Lorena-RM/social-Network-API/issues"
+  },
+  "homepage": "https://github.com/Lorena-RM/social-Network-API#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^6.0.13"
+  }
+}
