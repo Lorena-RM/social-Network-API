@@ -49,6 +49,15 @@ module.exports = {
               : res.json(thought)
           )
           .catch((err) => res.status(500).json(err));
+    },
+    //DELETE thought
+    deleteThought(req, res) {
+        Thought.findOneAndDelete({ _id: req.params.thoughtId })
+        .then((thought) => 
+        !thought
+        ? res.status(404).json({ message: "No thought with this id!" })
+        :res.json({ message: 'Thought deleted!' })
+        )
       },
 
 }
