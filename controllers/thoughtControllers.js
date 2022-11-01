@@ -4,7 +4,10 @@ const { User, Thought } = require("../models");
 module.exports = {
   //getting ALL thoughts
   getThoughts(req, res) {
-    Thought.find()
+    Thought.find({}).populate({
+        path: "reactions",
+        select: "-__v"
+    }).select("-__v")
       .then((thoughts) => res.json(thoughts))
       .catch((err) => res.status(500).json(err));
   },
@@ -77,4 +80,20 @@ module.exports = {
     )
     .catch((err) => res.status(500).json(err));
   },
+
+  //DELETING a reaction
+  deleteReaction(req, res) {
+    console.log('you are removing a reaction :)')
+    Thought.findOneAndUpdate(
+        { _id: req.params.thoughtId },
+        { $pull: {reactions : { reactionId: req.params.reactionId}}},
+        //equivalent to {new: true}
+        {returnOriginal: false }
+    )
+    .then((reaction) => 
+    !reaction
+        ? res.status(404).json({ message: "No thought and/or reaction with this id!" })
+        : res.json( reaction)
+    )
+  }
 };
